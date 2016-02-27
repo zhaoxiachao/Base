@@ -1,6 +1,6 @@
 #你挖坑你来填---程序生活从此多姿多彩
 
-[image](./image.png)
+![image](./image.png)
 
 ##目标
 
