@@ -60,3 +60,11 @@ List<String>[] list = new List<String>[3];
 创建泛型、参数化类型或者类型参数的数组是非法的，都会导致编译错误。
 
 考察点：Java默认是没有泛型数组的。
+
+### 4.是否存在使 i>j || i<=j 结果为false的数吗？
+结果：  
+存在  
+原因：  
+数值NaN代表not a number，无法用于比较，例如即使是 i = Double.NaN; j = i; 最后i == j的结果依旧为false。  
+考察点：Java基础知识点NaN  
+
