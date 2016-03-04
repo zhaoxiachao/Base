@@ -1,3 +1,4 @@
+
 ### 1.以下代码有问题吗，是什么问题？
 1.1
 ```java
@@ -68,3 +69,48 @@ List<String>[] list = new List<String>[3];
 数值NaN代表not a number，无法用于比较，例如即使是 i = Double.NaN; j = i; 最后i == j的结果依旧为false。  
 考察点：Java基础知识点NaN  
 
+### 5.程序运行结果？
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        TxtThread txtThread = new TxtThread();
+
+        new Thread(txtThread).start();
+        new Thread(txtThread).start();
+        new Thread(txtThread).start();
+
+    }
+
+    static class TxtThread implements Runnable {
+
+        int num = 100;
+        String str = new String();
+
+        @Override
+        public void run() {
+            synchronized (str) {
+                while (num > 0) {
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(TxtThread.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    System.out.println(Thread.currentThread().getName() + " this is " + num--);
+                }
+            }
+        }
+    }
+
+}
+```
+结果：
+Thread-0 this is 100
+......
+......
+Thread-0 this is 1
+
+原因：
+三个线程共享对一个Runnable对象，所以同步锁中其他两个线程没有执行机会
+
+考察点：Thread,Runnable,同步。
