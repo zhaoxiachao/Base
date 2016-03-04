@@ -17,7 +17,7 @@ objArray[0] = "I love Android!";
 1.2 编译可以，运行出错
 
 原因：   
-1.1 List<Object>和ArrayList<Long>没有继承关系
+1.1 List\<Object\>和ArrayList\<Long\>没有继承关系
 1.2 数组是在运行时类型检查
 
 考察点：泛型、数组
