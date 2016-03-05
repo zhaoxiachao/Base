@@ -156,3 +156,14 @@ Thread-0 this is 1
 总之，在Java语言中，判断一块内存空间是否符合垃圾收集器收集的标准只有两个： 
 1．给对象赋予了空值null，以下再没有调用过。 
 2．给对象赋予了新值，既重新分配了内存空间。 
+
+### 7.以下程序运行的结果是神马？
+String s1 = "abc";
+StringBuffer s2 = new StringBuffer(s1);
+System.out.println(s1.equals(s2));
+
+结果：   
+false
+
+原因:考String的toString方式，toString方法进行了instance of判断。
+>>>>>>> b081475e54b424700dc34c3f632652c03d4803aa
