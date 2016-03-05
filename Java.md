@@ -60,3 +60,13 @@ List<String>[] list = new List<String>[3];
 创建泛型、参数化类型或者类型参数的数组是非法的，都会导致编译错误。
 
 考察点：Java默认是没有泛型数组的。
+
+### 4.以下程序运行的结果是神马？
+String s1 = "abc";
+StringBuffer s2 = new StringBuffer(s1);
+System.out.println(s1.equals(s2));
+
+结果：   
+false
+
+原因:考String的toString方式，toString方法进行了instance of判断。
