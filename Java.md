@@ -54,19 +54,21 @@ System.out.print(l1 == 127L);
 List<String>[] list = new List<String>[3];
 ```
 
-结果：
+结果：	
 不可以运行，编译报错。
 
-原因：
+原因：	
 创建泛型、参数化类型或者类型参数的数组是非法的，都会导致编译错误。
 
 考察点：Java默认是没有泛型数组的。
 
 ### 4.是否存在使 i>j || i<=j 结果为false的数吗？
-结果：
-存在。  
-原因：  
-数值NaN代表not a number，无法用于比较，例如即使是 i = Double.NaN; j = i; 最后i == j的结果依旧为false。  
+结果：	
+存在。
+  
+原因：	
+数值NaN代表not a number，无法用于比较，例如即使是 i = Double.NaN; j = i; 最后i == j的结果依旧为false。
+  
 考察点：Java基础知识点NaN。
 
 ### 5.程序运行结果？
@@ -104,16 +106,16 @@ public class Main {
 
 }
 ```
-结果：
-Thread-0 this is 100
-......
-......
-Thread-0 this is 1
+结果：	
+Thread-0 this is 100	
+......	
+......	
+Thread-0 this is 1	
 
-原因：
+原因：	
 三个线程共享对一个Runnable对象，所以同步锁中其他两个线程没有执行机会。
 
-考察点：
+考察点：	
 Thread,Runnable,同步。
 
 ### 6.Java的垃圾回收面试题
@@ -124,7 +126,8 @@ Thread,Runnable,同步。
  3．fobj = new Object ( ) ;   
  4．fobj. Method ( ) ;   
 ```
-问：这段代码中，第几行的fobj 符合垃圾收集器的收集标准？ 
+问：这段代码中，第几行的fobj 符合垃圾收集器的收集标准？	
+ 
 答：第3行。因为第3行的fobj被赋了新值，产生了一个新的对象，即换了一块新的内存空间，也相当于为第1行中的fobj赋了null值。这种类型的题是最简单的。 
 
 6.2
@@ -134,7 +137,8 @@ Thread,Runnable,同步。
 3．Object sobj = new Object ( ) ;   
 4．sobj = new Object ( ) ;   
 ```
-问：这段代码中，第几行的内存空间符合垃圾收集器的收集标准？ 
+问：这段代码中，第几行的内存空间符合垃圾收集器的收集标准？ 	
+
 答：第2行和第4行。因为第2行为sobj赋值为null，所以在此第1行的sobj符合垃圾收集器的收集标准。而第4行相当于为sobj赋值为null，所以在此第3行的sobj也符合垃圾收集器的收集标准。
 
 6.3
@@ -148,6 +152,7 @@ Thread,Runnable,同步。
 7．aobj = null; 
 ```
 问：这段代码中，第几行的内存空间符合垃圾收集器的收集标准？ 
+
 答：第4，7行。注意这类题型是认证考试中可能遇到的最难题型了。 
 行1-3：分别创建了Object类的三个对象：aobj，bobj，cobj。
 行4：此时对象aobj的句柄指向bobj，原来aojb指向的对象已经没有任何引用或变量指向，这时，就符合回收标准。
@@ -158,14 +163,14 @@ Thread,Runnable,同步。
 2．给对象赋予了新值，既重新分配了内存空间。 
 
 ### 7.以下程序运行的结果是神马？
-···java
+```java
 String s1 = "abc";
 StringBuffer s2 = new StringBuffer(s1);
 System.out.println(s1.equals(s2));
-···
-结果：   
+```
+结果：	
 false。
 
-原因:
+原因:	
 考String的toString方式，toString方法进行了instance of判断。
 
