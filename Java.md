@@ -174,3 +174,28 @@ false。
 原因:	
 考String的toString方式，toString方法进行了instance of判断。
 
+
+### 8.下面的题目结果是什么
+```java
+public class TestFool {
+
+    public static String foo(){
+        System.out.println("Test foo called");
+        return "";
+    }
+
+    public static void main(String[] args) {
+        TestFool obj = null;
+            System.out.println(obj.foo());
+
+    }
+}
+```
+结果：	
+Test foo called。
+
+原因:	
+jvm内存里有栈区、堆区。栈区主要用来存放基础类型数据和局部变量，堆区主要存放new出来的对象。在堆区又有一个叫做方法区的内存区域用来存放常量、static变量和static方法，还有类的信息。static的变量和方法不依赖对象，即使对象没有创建，在类加载的时候已经存在信息了，jvm识别出是static方法就直接调用了在方法区内存里的方法，没有报空指针异常。
+
+
+
