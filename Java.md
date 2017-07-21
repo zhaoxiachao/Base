@@ -231,4 +231,74 @@ jvm内存里有栈区、堆区。栈区主要用来存放基础类型数据和�
 原因：
  Child直接继承于Base，默认构造函数不显示调用super也会直接父类的默认构造函数， 所以首先调用Base.java-->test()方法。这时Child类还没有构造完毕，a基本数据类型还没有赋予值，a又为成员变量默认值为0； 
 
+### 10.以下继承关系， 运行结果是？
+```java
+	public class Base {
+		public static String s = "static_base";
+		public String m = "base";
+		
+		public static void staticTest(){
+			System.out.println("base static: "+s);
+		}
+	}
+	public class Child extends Base {
+		public static String s = "child_base";
+		public String m = "child";
+		
+		public static void staticTest(){
+			System.out.println("child static: "+s);
+		}
+	}
+	public static void main(String[] args) {
+		Child c = new Child();
+		Base b = c;
+		
+		System.out.println(b.s);
+		System.out.println(b.m);
+		b.staticTest();
+		
+		System.out.println(c.s);
+		System.out.println(c.m);
+		c.staticTest();
+	}
+```
+结果：
+static_base
+base
+base static: static_base
+child_base
+child
+child static: child_base
+原因：~~~
+
+### 11.如果出现以下代码， 在编译阶段会出现什么现象？
+```java
+	public class Base {
+		protected void protect(){
+		}
+		
+		public void open(){        
+		}
+	}
+	public class Child extends Base {
+		//1放开会有啥现象
+	//    private void protect(){
+	//    }
+		
+		//2放开会有啥现象
+	//    protected void open(){        
+	//    }
+		//3放开会有啥现象
+		public void protect(){        
+		}
+	}
+```
+现象:
+如果1放开， 会在编译阶段报错；
+如果2放开， 会在编译阶段报错；
+如果3放开， 编译正常；
+原因： 
+重写方法不能比被重写方法限制有更严格的访问级别。
+
+
 
