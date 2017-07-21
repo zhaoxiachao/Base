@@ -198,4 +198,37 @@ Test foo called。
 jvm内存里有栈区、堆区。栈区主要用来存放基础类型数据和局部变量，堆区主要存放new出来的对象。在堆区又有一个叫做方法区的内存区域用来存放常量、static变量和static方法，还有类的信息。static的变量和方法不依赖对象，即使对象没有创建，在类加载的时候已经存在信息了，jvm识别出是static方法就直接调用了在方法区内存里的方法，没有报空指针异常。
 
 
+### 9.以下继承关系， 运行结果是？
+```java
+	public class Base {
+        public Base(){
+            test();
+        }
+        
+        public void test(){
+        }
+    }
+    
+    public class Child extends Base {
+        private int a = 123;
+        
+        public Child(){
+        }
+        
+        public void test(){
+            System.out.println(a);
+        }
+    }
+    
+    public static void main(String[] args){
+        Child c = new Child();
+        c.test();
+    };
+```
+结果：
+0 123
+
+原因：
+ Child直接继承于Base，默认构造函数不显示调用super也会直接父类的默认构造函数， 所以首先调用Base.java-->test()方法。这时Child类还没有构造完毕，a基本数据类型还没有赋予值，a又为成员变量默认值为0； 
+
 
